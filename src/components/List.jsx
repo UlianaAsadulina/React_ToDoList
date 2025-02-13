@@ -1,34 +1,44 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import Todo from "./Todo";
+import { ACTIONS, todoReducer } from "../utilities/todoReduser"
 
 function List() {
     const [todoText, setTodoText] = useState("");
 
     function handleChange(event) {
-        console.log(event.target.value);
-        const newTodo = event.target.value;
-        setTodoText(newTodo);
-
+        setTodoText(event.target.value);
     }
 
-    function handleAdd (event) {
-        event.preventDefault()
-        console.log(todoText);
-        // Add new Todo on top
+    const [state, dispatch] = useReducer(todoReducer, initialState);
 
-    }
+    const todoList = state.map((todo, index) => {
+        return (
+            <Todo key={index} text={todo.txt} dispatch={dispatch} />
+        );
+    });
+
 
     return (
         <div>
             <h1>ToDo List</h1>
-            <form onSubmit={handleAdd} >
-                <input type="text" onChange={handleChange}/>
-                <input type="submit" value="add" />
-            </form>
-            <Todo text="Todo 1"/>
-            <Todo text="Todo 2"/>
+
+            <input type="text" onChange={handleChange} />
+            <button onClick={() => {
+                dispatch({ type: ACTIONS.add, payload: { todoText } });
+            }}> Add </button>
+
+
+            {todoList}
+
         </div>
     )
 }
+
+const initialState = [
+    { txt: "Todo 1" },
+    { txt: "Todo 2" },
+
+];
+
 
 export default List;
