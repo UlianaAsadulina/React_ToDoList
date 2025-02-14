@@ -17,17 +17,19 @@ function List() {
         );
     });
 
-    let finished = false;
+    let finished = false; //for new todo 
     console.log("Add "+text);
 
     return (
         <div>
             <h1>ToDo List</h1>
 
-            <input type="text" onChange={handleChange} />
+            <input type="text" value={text} onChange={handleChange} />
             <button onClick={() => {
-                dispatch({ type: ACTIONS.add, payload: { text, finished } });
-            }}> Add </button>
+                dispatch({ type: ACTIONS.add, payload: { text, finished }});
+                setText(""); 
+                }}
+            > Add </button>
 
 
             {todoList}
