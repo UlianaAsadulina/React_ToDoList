@@ -14,12 +14,12 @@ function Todo ({text, finished, dispatch}) {
     // console.log(todoText.txt)
 
     return (
-        <div>
-            <input type="checkbox" checked={finished} 
+        <>
+            <input type="checkbox" className="chBox" checked={finished} 
                 onChange={() => {dispatch ( { type: ACTIONS.check, payload: { text, finished}})}} />
-            <span>{text}</span>
-            {/* <input type="hiden" value={todoText.txt} onChange={handleEdit}/>
-            <button>save</button> */}
+            <span style={finished ? { textDecoration: "line-through" } : {}}>
+                {text}
+            </span>          
             <button 
                 disabled={finished}
                 onClick={() => {
@@ -32,7 +32,7 @@ function Todo ({text, finished, dispatch}) {
                    
                  );
             }}> delete </button>
-        </div>
+        </>
     )
 }
 

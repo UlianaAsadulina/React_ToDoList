@@ -12,7 +12,7 @@ export default function Form(props) {
     console.log("Form text: "+text);
 
     return <form>
-        <input type="text" value={text} onChange={handleChange}/>
+        <input type="text" className="txtInput"  value={text} onChange={handleChange}/>
         <button onClick={() =>  {props.onClick(text); }}
         >{props.button}</button>
     </form>

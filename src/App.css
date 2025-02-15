@@ -25,4 +25,45 @@ h1 {
   background-color: rgb(253, 216, 170);
   color: rgb(87, 49, 3);
   align-content: center;
+  text-align: left;
+  
+}
+
+button {
+  border: 1px solid rgb(87, 49, 3);
+  border-radius: 5px;
+  background-color: bisque;
+  margin: 0 1px 0 10px;
+  height: 20px;
+  margin-right: auto;
+  color: rgb(87, 49, 3);
+  
+}
+
+button:disabled {  
+  color: rgb(204, 198, 198);
+}
+
+button:hover {
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.6);
+}
+
+.txtInput {
+  height: 15px;
+  width: 70%;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.chBox {
+  margin: 0 10px 0 10px;
+  height: 17px;
+  width: 17px; 
+  
+}
+
+span {
+  min-width: 70%;
+  margin-left: auto;
+  
 }

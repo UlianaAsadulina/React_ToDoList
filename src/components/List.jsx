@@ -33,7 +33,7 @@ function List() {
         <div>
             <h1>ToDo List</h1>
             <div className="todo">
-                <input type="text" value={text} onChange={handleChange} />
+                <input type="text" className="txtInput" value={text} onChange={handleChange} />
                 <button onClick={() => {
                     dispatch({ type: ACTIONS.add, payload: { text, finished, editing }});
                     setText(""); 

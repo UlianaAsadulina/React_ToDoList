@@ -7,25 +7,18 @@ function todoReducer (state, { type, payload: { text, finished, editing } }) {
   
     switch (type) {
       case ACTIONS.add: {
-        console.log("New:"+text);
-
         if (text !== "") {
           return [{ txt: text, finished: false, editing: false }, ...state];          
         } else return state;
         
       }
 
-      case ACTIONS.check: {  
-        console.log("Is this finished - "+finished);
-        console.log("Text from check: "+text);
-       
+      case ACTIONS.check: { 
         newList.splice(index,1, {txt: text, finished: !finished, editing: false});
         return newList;
       }
 
-      case ACTIONS.edit: {
-        console.log("Edit "+index);
-        console.log("Is this editing - "+editing);
+      case ACTIONS.edit: {        
         newList.splice(index,1, {txt: text, finished: finished, editing: !editing});
         return newList
 
