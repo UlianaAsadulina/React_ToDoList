@@ -1,28 +1,33 @@
-function todoReducer (state, { type, payload: { text, finished } }) {
+function todoReducer (state, { type, payload: { text, finished, editing } }) {
+    
+  const curent = (element) => element.txt === text; 
+  let index = state.findIndex(curent);  
+  console.log("Index: "+index);
+  let newList = [...state];
+  
     switch (type) {
       case ACTIONS.add: {
         console.log("New:"+text);
 
         if (text !== "") {
-          return [{ txt: text, finished: false }, ...state];          
+          return [{ txt: text, finished: false, editing: false }, ...state];          
         } else return state;
         
       }
 
-      case ACTIONS.check: {
-        console.log("Is this finished "+finished);
-        let newList = [...state];
-        console.log("Text from check:"+text);
-        const isEdit = (element) => element.txt === text;
-        const index = newList.findIndex(isEdit);
-        console.log(index);
-        newList.splice(index,1, {txt: text, finished: !finished});
+      case ACTIONS.check: {  
+        console.log("Is this finished - "+finished);
+        console.log("Text from check: "+text);
+       
+        newList.splice(index,1, {txt: text, finished: !finished, editing: false});
         return newList;
-        
-
       }
 
       case ACTIONS.edit: {
+        console.log("Edit "+index);
+        console.log("Is this editing - "+editing);
+        newList.splice(index,1, {txt: text, finished: finished, editing: !editing});
+        return newList
 
       }
 
@@ -30,7 +35,15 @@ function todoReducer (state, { type, payload: { text, finished } }) {
         return state.filter((s) => s.txt !== text);
       }
 
-      
+      case ACTIONS.update: {
+        console.log("Update "+index);
+        console.log("New text "+text)
+        const isEdit = (element) => element.editing === true;
+        index = state.findIndex(isEdit); 
+        newList.splice(index,1, {txt: text, finished: false, editing: false});
+        return newList 
+
+      }
       
       default: {
         throw Error("Unknown Action: " + type);
@@ -43,6 +56,7 @@ function todoReducer (state, { type, payload: { text, finished } }) {
     check: 'check',
     delete: 'delete',
     edit: 'edit',
+    update: 'update'
   };
   
 

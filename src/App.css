@@ -4,3 +4,25 @@
   padding: 2rem;
   text-align: center;
 }
+
+
+.todolist {
+  width: 80%;
+  margin: 10px;
+  padding: 20px;
+  background-color: bisque;
+}
+
+h1 {
+  color: rgb(87, 49, 3);
+}
+
+.todo {
+  border: 1px solid rgb(87, 49, 3);
+  height: 30px;
+  padding: 5 10 5 15;
+  margin: 10px;
+  background-color: rgb(253, 216, 170);
+  color: rgb(87, 49, 3);
+  align-content: center;
+}
